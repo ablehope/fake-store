@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Products from './components/Products/Products';
-import Product from './components/Product/Product';
-import Home from './components/Home/Home';
-import NotFound from "./components/NotFound/NotFound";
+import { RouterProvider } from 'react-router-dom';
 import NoPermissions from "./components/NoPermissions/NoPermissions";
 
 import './App.css';
+import {routerConfig} from "./router/routerConfig";
 
 function App() {
 
@@ -21,14 +18,7 @@ function App() {
     }
 
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/products" element={checkPermissions(<Products/>)} />
-          <Route path="/products/:id" element={checkPermissions(<Product/>)} />
-          <Route path="*" element={<NotFound/>} />
-        </Routes>
-      </BrowserRouter>
+      <RouterProvider router={routerConfig} />
   )
 }
 
